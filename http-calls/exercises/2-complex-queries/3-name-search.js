@@ -7,7 +7,7 @@
  async function searchProductByName(nameStr) {
    const query = qs.stringify(
    {
-       _
+       name: ["nameStr"],
    }, 
    {
      encodeValuesOnly: true,
@@ -15,11 +15,11 @@
    console.log("The query string", query);
  
    // call the matching endpoint and include the querystring after the ?
-   const baseUrl = _;
-   const response = await fetch(`${_}?${query}`);
+   
+   const response = await fetch(`http://localhost:1337/api/products?${query}`);
    const result = await response.json();
-   _
- }
+   result.forEach(product => console.log(product.name));
+ };
 
  async function test() {
   console.log("Products containing name", await searchProductByName("name"));
